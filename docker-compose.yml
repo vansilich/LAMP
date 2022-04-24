@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  apache:
+    build:
+      context: ./apache
+    volumes:
+    - ./configs/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    - ./configs/apache/extra/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+    - ./htdocs:/usr/local/apache2/htdocs
+    - ./logs/apache:/usr/local/apache2/logs
+    ports:
+    - 127.0.0.1:80:80
+
+  php5.3:
+    build:
+      context: ./php/5.3
+    volumes:
+      - ./htdocs:/var/www/html
+
+  php8.1:
+    build:
+      context: ./php/8.1
+    volumes:
+      - ./htdocs:/var/www/html
