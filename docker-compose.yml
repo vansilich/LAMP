@@ -12,15 +12,25 @@ services:
     - ./logs/apache:/usr/local/apache2/logs
     ports:
     - 127.0.0.1:80:80
+    networks:
+      - 'LAMP'
 
   php5.3:
     build:
       context: ./php/5.3
     volumes:
       - ./htdocs:/var/www/html
+    networks:
+      - 'LAMP'
 
   php8.1:
     build:
       context: ./php/8.1
     volumes:
       - ./htdocs:/var/www/html
+    networks:
+      - 'LAMP'
+
+networks:
+  LAMP:
+    name: LAMP
