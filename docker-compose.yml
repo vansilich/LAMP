@@ -11,7 +11,7 @@ services:
     - ./htdocs:/usr/local/apache2/htdocs
     - ./logs/apache:/usr/local/apache2/logs
     ports:
-    - 127.0.0.1:80:80
+    - "127.0.0.1:80:80"
     networks:
       - 'LAMP'
 
@@ -20,6 +20,7 @@ services:
       context: ./php/5.3
     volumes:
       - ./htdocs:/var/www/html
+      - ./php/5.3/php-fpm.d:/usr/local/etc/php-fpm.d
     networks:
       - 'LAMP'
 
